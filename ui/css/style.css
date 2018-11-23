@@ -1,0 +1,135 @@
+/*Set font family*/
+html {
+    font-family: Arial;
+}
+/*Add background color to top navigation*/
+.topnav {
+    background-color: #4267b2;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+/*Style links in navigation bar*/
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border-right: 1px solid #bbb;
+}
+a.right {
+    float: right;
+    border-left: 1px solid #bbb;
+}
+/*Change color of navigation links on hover*/
+.topnav a:hover {
+    background-color: #4caf50;
+    color: white;
+}
+/*Hide link that should open and close top nav on small screens*/
+.topnav .icon {
+    display: none;
+}
+/*home background image and text*/
+.bgimage {
+    background-image: url("../images/ireport.jpg");
+    height: 100vh; 
+    background-repeat: no-repeat;
+    overflow: hidden;
+    width: 100%;
+} 
+.hometext{
+    color: white;
+    text-align: center;
+    top: 20%;
+    position: relative;
+}
+.hometext h1{
+    font-size: 40px;
+    color: #CBEF67;
+}
+/* Link buttons */
+.buttonlink {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 30px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    text-decoration: none;
+}
+.buttonlink:hover {
+    opacity:1;
+  }
+#signinbutton {
+    background-color: #4267b2; 
+}
+
+/*style the signup form*/
+.signup {
+    width: 40%;
+    float: right;
+    margin-top: 200px;
+}
+input[type=text], input[type=password], input[type=email]{
+    padding: 15px;
+    margin: 5px 15px;
+    border: none;
+    background: #f1f1f1;
+}
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
+    background-color: #ddd;
+}
+.signup table p {
+    margin: 10px 20px;
+}
+.signupbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 30px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    margin-left: 240px;
+    margin-top: 20px;   
+}
+.signupbtn:hover {
+    opacity:1;
+  }
+/*Style signup page image*/
+.img {
+    width: 50%;
+    float: left;
+    height: 100vh;
+}
+
+
+
+@media screen and (max-width: 600px){
+    .topnav a:not(:first-child){display: none;}
+    .topnav a.icon{
+        float: right;
+        display: block;
+    }
+    .topnav a{
+        border-right: none;
+    }
+    .topnav.responsive {
+        position: relative;
+    }
+    .topnav.responsive a .icon{
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .topnav.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+}
+
