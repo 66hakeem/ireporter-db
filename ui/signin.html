@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SignIn-iReporter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
+    <script src="javascript/main.js"></script>
+</head>
+<body>
+    <div class = "topnav" id = "mytopnav">
+            <a href = "home.html" class = "active">Home</a>
+            <a href="signin.html" class="right">Sign In</a>
+            <a href="signup.html" class="right">Sign Up</a>
+            <a href = "javascript:void(0);" class = "icon" onclick = "myFunction()">&#9776
+            </a>
+    </div>
+    <div>
+        <img src="images/ireport.jpg" class="img">
+    </div>
+    <div class="signup">
+        <h1>Login to your account.</h1>
+        <form>
+            <table>
+                <tr>
+                    <td>
+                        <p><b>Email</b></p>
+                        <input type = "text" placeholder="Enter your email" name="email" required>
+                    </td>
+                </tr>    
+                <tr>
+                    <td>
+                        <p><b>Password</b></p>
+                        <input type = "password" placeholder="Enter Password" name="password" required>                            
+                    </td>
+                </tr>     
+            </table>
+            <button type="button" id="signinbtn">Sign In</button>
+        </form>
+    </div>
+</body>
+</html>
