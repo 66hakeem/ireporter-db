@@ -6,3 +6,7 @@ function myFunction() {
         x.className = "topnav"
     }
 }
+
+function confirm() {
+    alert("Submitted!");
+}
