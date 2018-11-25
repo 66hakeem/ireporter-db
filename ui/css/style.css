@@ -39,7 +39,7 @@ a.right {
     background-image: url("../images/ireport.jpg");
     height: 100vh; 
     background-repeat: cover;
-    overflow: hidden;
+    overflow: auto;
     width: 100%;
 } 
 .hometext{
