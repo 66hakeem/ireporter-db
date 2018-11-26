@@ -10,38 +10,38 @@
 </head>
 <body>
     <div class = "topnav" id = "mytopnav">
-            <a href = "../index.html" class = "active">Home</a>
-            <a href="signin.html" class="right">Sign In</a>
-            <a href="signup.html" class="right">Sign Up</a>
+            <a href = "../index.html">Home</a>
+            <a href = "report.html" class="active">Report Issue</a>
+            <a href="account.html">My Accout</a>
+            <a href="../index.html" class="right">Logout</a>
             <a href = "javascript:void(0);" class = "icon" onclick = "myFunction()">&#9776
             </a>
     </div>
     <div class="bgimage">
-    <h1 class="center">
-        Report Incident
-    </h1>
-    <div class="reportcontainer">
-        
-        <form id = "recordform">
-            <h2><b>Title</b></h2>
-            <input type="text" placeholder="Title" name="title" required>
-            <h2><b>Type of record</b></h2>
-            <select name = "records">
-                <option value="red-flag">Red-Flag</option>
-                <option value="intervention">Intervention</option>
-            </select>  
-            <h2><b>Details about record claimed.</b></h2>
-            <textarea id="details" name="details" placeholder="Enter text here" required></textarea>
-            <h2><b>Add Geo Location</b></h2>
-            <h3><b>Latitude: <input type="text" placeholder="0.3433222" name="title"></b></h3>
-            <h3><b>Longitude: <input type="text" placeholder="34.22334" name="title"></b></h3>
-            <h2><b>Upload Images</b></h2>
-            <input type="file" name="myFile" multiple>
-            <h2><b>Upload Videos</b></h2>
-            <input type="file" name="videos" multiple>     
-            <p><button type="submit" class="reportbutton" onclick="confirm();">Submit</button></p>
-        </form>
-    </div>
+        <h1 class="center">
+            Report Incident
+        </h1>
+        <div class="reportcontainer">
+            <form>
+                <h2><b>Title</b></h2>
+                <input type="text" placeholder="Title" name="title" required>
+                <h2><b>Type of record</b></h2>
+                <select name = "records">
+                    <option value="red-flag">Red-Flag</option>
+                    <option value="intervention">Intervention</option>
+                </select>  
+                <h2><b>Details about record claimed.</b></h2>
+                <textarea id="details" name="details" placeholder="Enter text here" required></textarea>
+                <h2><b>Add Geo Location</b></h2>
+                <h3><b>Latitude: <input type="text" placeholder="0.3433222" name="title"></b></h3>
+                <h3><b>Longitude: <input type="text" placeholder="34.22334" name="title"></b></h3>
+                <h2><b>Upload Images</b></h2>
+                <input type="file" name="myFile" multiple>
+                <h2><b>Upload Videos</b></h2>
+                <input type="file" name="videos" multiple>     
+                <p><button type="submit" class="reportbutton">Submit</button></p>
+            </form>
+        </div>
     </div>
     
 </body>

@@ -21,6 +21,10 @@ html {
     font-size: 17px;
     border-right: 1px solid #bbb;
 }
+.active {
+    background-color: #4caf50;
+}
+
 a.right {
     float: right;
     border-left: 1px solid #bbb;
@@ -28,7 +32,7 @@ a.right {
 /*Change color of navigation links on hover*/
 .topnav a:hover {
     background-color: #4caf50;
-    color: white;
+    color: #ffffff;
 }
 /*Hide link that should open and close top nav on small screens*/
 .topnav .icon {
@@ -38,12 +42,11 @@ a.right {
 .bgimage {
     background-image: url("../images/ireport.jpg");
     height: 100vh; 
-    background-repeat: cover;
-    overflow: hidden;
+    overflow: auto;
     width: 100%;
 } 
 .hometext{
-    color: white;
+    color: #ffffff;
     text-align: center;
     top: 20%;
     position: relative;
@@ -55,7 +58,7 @@ a.right {
 /* Link buttons */
 .buttonlink {
     background-color: #4CAF50;
-    color: white;
+    color: #ffffff;
     padding: 14px 30px;
     border: none;
     cursor: pointer;
@@ -88,7 +91,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
 }
 .signupbtn {
     background-color: #4CAF50;
-    color: white;
+    color: #ffffff;
     padding: 14px 30px;
     border: none;
     cursor: pointer;
@@ -108,7 +111,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
 /*Sign in button*/
 #signinbtn {
     background-color: #4CAF50;
-    color: white;
+    color: #ffffff;
     padding: 14px 30px;
     border: none;
     cursor: pointer;
@@ -126,7 +129,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
     text-align: center;
     background-color: #f2f2f2;
     padding: 20px;
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
 }
 .reportcontainer input[type=text] {
@@ -144,7 +147,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
 }
 .reportbutton {
     background-color: #4CAF50;
-    color: white;
+    color: #ffffff;
     padding: 14px 30px;
     border: none;
     cursor: pointer;
@@ -152,6 +155,50 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
 }
 .reportbutton:hover {
     opacity: 1;
+}
+/*Style account page*/
+.usericon img{
+    width: 200px;
+    height: 200px;
+}
+.reportcontainer th, td {
+    padding: 15px;
+}
+.reportcontainer h1 {
+    color: #4267b2;
+}
+.reportcontainer table{
+    margin: 0 auto;
+}
+.recordstable{
+    width: 100%;
+    border: 1px solid #4267b2;
+    border-collapse: collapse;
+}
+.recordstable td{
+    border: 1px solid #4267b2;
+}
+.recordstable th{
+    border: 1px solid #4267b2;
+}
+.smallimage{
+    width: 200px;
+    height: 100px;
+}
+.rejected{
+    background-color: #f52c44;
+    padding: 5px;
+    border-radius: 5px; 
+}
+.underinvestigation{
+    background-color: #4CAF50;
+    padding: 5px;
+    border-radius: 5px; 
+}
+.resolved{
+    background-color: #4267b2;
+    padding: 5px;
+    border-radius: 5px; 
 }
 
 

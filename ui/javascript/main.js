@@ -7,6 +7,3 @@ function myFunction() {
     }
 }
 
-function confirm() {
-    alert("Submitted!");
-}
