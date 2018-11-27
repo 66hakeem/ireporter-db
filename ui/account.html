@@ -27,7 +27,7 @@
                 <h2>Matovu Hakeem</h2>  
             </div>
             <hr>
-            <h1>Your History</h1>
+            <h1>Your Records</h1>
             <table>
                 <tr>
                     <th></th>
@@ -49,6 +49,13 @@
                     </tr>
             </table> 
             <h1>All Records</h1>
+                <select class="recorddropdown" onchange="location = this.value;">
+                    <option value="records.html"><a href="records.html">Red-Flag</a></option>
+                    <option value="records.html"><a href="records.html">Intervention</a></option>
+                    <option value="records.html"><a href="records.html">Resolved</a></option>
+                    <option value="records.html"><a href="records.html">Under Investigation</a></option>
+                    <option value="records.html"><a href="account.html">Rejected</a></option>
+                </select>
             <div>
             <table class="recordstable">
                 <tr>
@@ -72,6 +79,11 @@
                         <img src="images/ireport.jpg" class="smallimage">
                         <h4>Stolen Funds.</h4>
                         <p>Status: <span class="underinvestigation">Under Investigation</span></p>
+                    </td>
+                    <td>
+                        <img src="images/ireport.jpg" class="smallimage">
+                        <h4>Bribery.</h4>
+                        <span class="delete">Delete</span><span class="edit">Edit</span></p>
                     </td>
                 </tr>
                 <tr>

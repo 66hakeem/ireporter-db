@@ -187,18 +187,51 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
 }
 .rejected{
     background-color: #f52c44;
-    padding: 5px;
-    border-radius: 5px; 
+    padding: 10px;
+    border-radius: 5px;
+    color: #ffffff; 
+    font-weight: bold;
 }
 .underinvestigation{
-    background-color: #4CAF50;
-    padding: 5px;
+    background-color: #4267b2;
+    padding: 10px;
     border-radius: 5px; 
+    color: #ffffff;
+    font-weight: bold;
 }
 .resolved{
+    background-color: #4caf50;
+    padding: 10px;
+    border-radius: 4px; 
+    color: #ffffff;
+    font-weight: bold;
+}
+.edit{
     background-color: #4267b2;
-    padding: 5px;
-    border-radius: 5px; 
+    padding: 10px;
+    border-radius: 4px; 
+    color: #ffffff;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.delete{
+    background-color: #f52c44;
+    padding: 10px;
+    border-radius: 4px; 
+    color: #ffffff;
+    font-weight: bold;
+}
+/*Style for records dropdown button*/
+.recorddropdown{
+    margin-bottom: 20px;
+    background-color: #4caf50;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 20px;
+}
+.recorddropdown a{
+    text-decoration: none;
+    border: none;
 }
 
 
