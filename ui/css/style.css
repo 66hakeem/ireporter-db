@@ -131,6 +131,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
     padding: 20px;
     width: 60%;
     margin: 0 auto;
+    overflow: hidden;
 }
 .reportcontainer input[type=text] {
     border-bottom: 1px solid #000000;
@@ -232,6 +233,24 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
 .recorddropdown a{
     text-decoration: none;
     border: none;
+}
+/*Style all records page*/
+.mediumimage{
+    width: 400px;
+    height: 200px;
+}
+.leftside{
+    float: left;
+    overflow: hidden;
+    padding: 40px;
+}
+.rightside{
+    text-align: left;
+    margin-top: 50px;
+}
+#right {
+    float: right;
+    margin: 10px;
 }
 
 
