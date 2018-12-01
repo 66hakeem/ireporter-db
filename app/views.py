@@ -1,5 +1,5 @@
 from flask import jsonify, request
-from models import Users
+from app.models import Users
 from instance import myapp
 
 user1 = Users()
