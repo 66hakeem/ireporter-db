@@ -3,3 +3,7 @@ ivenv/
 .vscode/
 __pycache__/
 .pytest_cache/
+*.pyc
+app/*.pyc
+test/*.pyc
+instance/*.pyc
