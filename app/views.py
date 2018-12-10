@@ -24,11 +24,17 @@ def create_red_flag():
     createdBy = request.json['createdBy']
     location = request.json['location']
     comment = request.json['comment']
-    images_list = []
-    images_list.append(request.json['images'])
-   
-    return record1.create_red_flag_record(createdBy, location, comment, images_list)
+    images = []
+    images.append(request.json['images'])
+    videos = []
+    videos.append(request.json['videos'])
+
+    return record1.create_red_flag_record(createdBy, location, comment, images, videos)
 
 @myapp.route('/api/v1/records', methods=['GET'])
 def get_red_flag_records():
     return record1.get_red_flags()
+
+@myapp.route('/api/v1/records/<int:record_id>', methods=['GET'])
+def get_specific_redflag(record_id):
+    return record1.get_red_flag(record_id)
