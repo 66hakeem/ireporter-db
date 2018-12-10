@@ -3,7 +3,7 @@ from datetime import date
 
 
 class Users:
-
+    
     def __init__(self):
         self.users = []
     
@@ -25,23 +25,21 @@ class Users:
             "registered": today
         }
         self.users.append(user)
-        return jsonify({'message':'successfully added'}), 201
+        return jsonify({"status": 201, "data": [{"id":user_id, "message":"Created user."}]}), 201
     
     def get_users(self):
         """ gets a list of users"""
-        return jsonify({'users':self.users}),200
+        return jsonify({"status": 200, "data": self.users})
 
 class Records:
     def __init__(self):
         self.records = []
 
-    def create_red_flag_record(self, createdBy, location, comment, images=list()):
+    def create_red_flag_record(self, createdBy, location, comment, images, videos):
         record_id = len(self.records) + 1
         status = "Draft"
         created_on = str(date.today())
         record_type = "red-flag"
-
-        images = []
 
         record = {
             "id": record_id,
@@ -51,12 +49,19 @@ class Records:
             "location": location,
             "status": status,
             "comment": comment,
-            "images": images
+            "images": images,
+            "videos": videos
         }
 
         self.records.append(record)
-        return jsonify({'message':'successfully added'}), 201
+        return jsonify({"status": 201, "data": [{"id":record_id, "message":"Created red-flag record"}]}),201
     
     def get_red_flags(self):
         """ gets a list of users"""
-        return jsonify({'records':self.records}),200
+        return jsonify({"status": 200, "data": self.records})
+    
+    def get_red_flag(self, record_id):
+        """get a specific red flag"""
+        for record in self.records:
+            if record['id'] == record_id:
+                return jsonify({"status":200, "data": record})
