@@ -48,4 +48,9 @@ def edit_location(record_id):
     location = request.json['location']
     return record1.edit_redflag_location(record_id, location)
 
+@myapp.route('/api/v1/records/<int:record_id>/comment', methods=['PATCH'])
+def edit_comment(record_id):
+    comment = request.json['comment']
+    return record1.edit_redflag_comment(record_id, comment)
+
 

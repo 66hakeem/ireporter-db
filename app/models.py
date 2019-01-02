@@ -80,3 +80,9 @@ class Records:
                 record['location'] = location
                 return jsonify({"status": 201, "data": [{"id":record_id, "message":"Updated red-flag record's location"}]})
     
+    def edit_redflag_comment(self, record_id, comment):
+        """Edit a red-flag's location"""
+        for record in self.records:
+            if record['id'] == record_id:
+                record['comment'] = comment
+                return jsonify({"status": 201, "data": [{"id":record_id, "message":"Updated red-flag record's comment"}]})
