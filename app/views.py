@@ -42,3 +42,10 @@ def get_specific_redflag(record_id):
 @myapp.route('/api/v1/records/<int:record_id>', methods=['DELETE'])
 def delete_redflag_records(record_id):
     return record1.delete_red_flag(record_id)
+
+@myapp.route('/api/v1/records/<int:record_id>/location', methods=['PATCH'])
+def edit_location(record_id):
+    location = request.json['location']
+    return record1.edit_redflag_location(record_id, location)
+
+

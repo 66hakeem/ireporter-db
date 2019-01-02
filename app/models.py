@@ -73,3 +73,10 @@ class Records:
                 self.records.remove(record)
                 return jsonify({"status":200, "data": [{"id":record_id, "message":"red-flag record has been deleted"}]})
     
+    def edit_redflag_location(self, record_id, location):
+        """Edit a red-flag's location"""
+        for record in self.records:
+            if record['id'] == record_id:
+                record['location'] = location
+                return jsonify({"status": 201, "data": [{"id":record_id, "message":"Updated red-flag record's location"}]})
+    
