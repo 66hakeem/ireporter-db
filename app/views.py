@@ -38,3 +38,7 @@ def get_red_flag_records():
 @myapp.route('/api/v1/records/<int:record_id>', methods=['GET'])
 def get_specific_redflag(record_id):
     return record1.get_red_flag(record_id)
+
+@myapp.route('/api/v1/records/<int:record_id>', methods=['DELETE'])
+def delete_redflag_records(record_id):
+    return record1.delete_red_flag(record_id)

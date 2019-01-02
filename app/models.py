@@ -65,3 +65,11 @@ class Records:
         for record in self.records:
             if record['id'] == record_id:
                 return jsonify({"status":200, "data": record})
+    
+    def delete_red_flag(self, record_id):
+        """deletes a red flag record"""
+        for record in self.records:
+            if record['id'] == record_id:
+                self.records.remove(record)
+                return jsonify({"status":200, "data": [{"id":record_id, "message":"red-flag record has been deleted"}]})
+    
