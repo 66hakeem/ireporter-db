@@ -1,4 +1,3 @@
 [run]
 omit = 
-    home/*
-    tests/*
+    /home/travis/virtualenv/*
