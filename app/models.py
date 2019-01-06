@@ -29,7 +29,7 @@ class Users:
     
     def get_users(self):
         """ gets a list of users"""
-        return jsonify({"status": 200, "data": self.users})
+        return jsonify({"status": 200, "data": self.users}), 200
 
 class Records:
     def __init__(self):
@@ -58,31 +58,31 @@ class Records:
     
     def get_red_flags(self):
         """ gets a list of users"""
-        return jsonify({"status": 200, "data": self.records})
+        return jsonify({"status": 200, "data": self.records}), 200
     
     def get_red_flag(self, record_id):
         """get a specific red flag"""
         for record in self.records:
             if record['id'] == record_id:
-                return jsonify({"status":200, "data": record})
+                return jsonify({"status":200, "data": record}), 200
     
     def delete_red_flag(self, record_id):
         """deletes a red flag record"""
         for record in self.records:
             if record['id'] == record_id:
                 self.records.remove(record)
-                return jsonify({"status":200, "data": [{"id":record_id, "message":"red-flag record has been deleted"}]})
+                return jsonify({"status":200, "data": [{"id":record_id, "message":"red-flag record has been deleted"}]}), 200
     
     def edit_redflag_location(self, record_id, location):
         """Edit a red-flag's location"""
         for record in self.records:
             if record['id'] == record_id:
                 record['location'] = location
-                return jsonify({"status": 201, "data": [{"id":record_id, "message":"Updated red-flag record's location"}]})
+                return jsonify({"status": 200, "data": [{"id":record_id, "message":"Updated red-flag record's location"}]}), 200
     
     def edit_redflag_comment(self, record_id, comment):
         """Edit a red-flag's location"""
         for record in self.records:
             if record['id'] == record_id:
                 record['comment'] = comment
-                return jsonify({"status": 201, "data": [{"id":record_id, "message":"Updated red-flag record's comment"}]})
+                return jsonify({"status": 200, "data": [{"id":record_id, "message":"Updated red-flag record's comment"}]}), 200
