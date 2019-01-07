@@ -19,7 +19,7 @@ def register_user():
 def get_users():
     return user1.get_users()
 
-@myapp.route('/api/v1/records', methods=['POST'])
+@myapp.route('/api/v1/red_flags', methods=['POST'])
 def create_red_flag():
     createdBy = request.json['createdBy']
     location = request.json['location']
@@ -31,26 +31,26 @@ def create_red_flag():
 
     return record1.create_red_flag_record(createdBy, location, comment, images, videos)
 
-@myapp.route('/api/v1/records', methods=['GET'])
+@myapp.route('/api/v1/red_flags', methods=['GET'])
 def get_red_flag_records():
     return record1.get_red_flags()
 
-@myapp.route('/api/v1/records/<int:record_id>', methods=['GET'])
-def get_specific_redflag(record_id):
-    return record1.get_red_flag(record_id)
+@myapp.route('/api/v1/red_flags/<int:red_flag_id>', methods=['GET'])
+def get_specific_redflag(red_flag_id):
+    return record1.get_red_flag(red_flag_id)
 
-@myapp.route('/api/v1/records/<int:record_id>', methods=['DELETE'])
-def delete_redflag_records(record_id):
-    return record1.delete_red_flag(record_id)
+@myapp.route('/api/v1/red_flags/<int:red_flag_id>', methods=['DELETE'])
+def delete_redflag_records(red_flag_id):
+    return record1.delete_red_flag(red_flag_id)
 
-@myapp.route('/api/v1/records/<int:record_id>/location', methods=['PATCH'])
-def edit_location(record_id):
+@myapp.route('/api/v1/red_flags/<int:red_flag_id>/location', methods=['PATCH'])
+def edit_location(red_flag_id):
     location = request.json['location']
-    return record1.edit_redflag_location(record_id, location)
+    return record1.edit_redflag_location(red_flag_id, location)
 
-@myapp.route('/api/v1/records/<int:record_id>/comment', methods=['PATCH'])
-def edit_comment(record_id):
+@myapp.route('/api/v1/red_flags/<int:red_flag_id>/comment', methods=['PATCH'])
+def edit_comment(red_flag_id):
     comment = request.json['comment']
-    return record1.edit_redflag_comment(record_id, comment)
+    return record1.edit_redflag_comment(red_flag_id, comment)
 
 

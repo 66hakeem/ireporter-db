@@ -20,18 +20,18 @@ class ApiTest(TestCase):
         self.assertEqual(res.status_code, 200)        
     
     def test_create_redflag(self):
-        res = self.app.post('/api/v1/records', content_type='application/json',
+        res = self.app.post('/api/v1/red_flags', content_type='application/json',
         data=json.dumps(dict(createdBy="2", location="23.444,44,3", comment="Fallen Electric Pole", 
         images="[bridge.jpg, water.png]", videos="[video1.mp4]" )))
 
         self.assertEqual(res.status_code, 201)
     
     def test_get_all_redflag_records(self):
-        res = self.app.get('/api/v1/records')
+        res = self.app.get('/api/v1/red_flags')
         self.assertEqual(res.status_code, 200)  
 
     def test_get_specific_redflag(self):
-        res = self.app.get('api/v1/records/1')
+        res = self.app.get('api/v1/red_flags/1')
         self.assertEqual(res.status_code, 200) 
     
 
