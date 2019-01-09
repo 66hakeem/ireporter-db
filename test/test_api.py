@@ -5,6 +5,7 @@ from instance import myapp
 
 
 class ApiTest(TestCase):
+    
     def setUp(self):
         self.app = myapp.test_client()
     
