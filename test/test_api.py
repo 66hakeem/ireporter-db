@@ -32,8 +32,15 @@ class ApiTest(TestCase):
 
     def test_get_specific_redflag(self):
         res = self.app.get('api/v1/red_flags/1')
+        self.assertEqual(res.status_code, 200)
+
+    def test_update_red_flag_location(self):
+        res = self.app.patch('api/v1/red_flags/1/location', content_type='application/json', data=json.dumps(dict(location="123.0, 333.2")))
         self.assertEqual(res.status_code, 200) 
     
+    def test_update_red_flag_comment(self):
+        res = self.app.patch('api/v1/red_flags/1/comment', content_type='application/json', data=json.dumps(dict(comment="Report Case of Missing Funds")))
+        self.assertEqual(res.status_code, 200) 
 
     
         
