@@ -86,7 +86,7 @@ class ValidationTest(TestCase):
         reply = json.loads(res.data)
         self.assertEqual(reply["message"], "Email must not have spaces")
         self.assertEqual(res.status_code, 400)
-    
+
     def test_wrong_username_format(self):
         res = self.app.post('/api/v1/users', content_type='application/json',
                             data=json.dumps(dict(firstname="hakeem",

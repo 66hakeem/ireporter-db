@@ -130,4 +130,4 @@ class Records:
                 record['images'] = images
                 record['videos'] = videos
                     
-                return jsonify({"status": 200, "message": "Updated red-flag"})
+                return jsonify({"status": 200, "message": "Updated red-flag"}), 200
