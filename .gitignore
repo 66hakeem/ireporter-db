@@ -4,4 +4,4 @@ ivenv/
 __pycache__/
 .pytest_cache/
 *.pyc
-htmlcov/*
+htmlcov/
