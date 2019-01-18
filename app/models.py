@@ -34,7 +34,7 @@ class Users:
 
         for user in self.users:
             if user['username'] == username:
-                return jsonify({"message": "Username already exists"})
+                return jsonify({"message": "Username already exists"}), 409
 
         user = {
             "firstname": firstname,
@@ -92,6 +92,7 @@ class Records:
         for record in self.records:
             if record['id'] == record_id:
                 return jsonify({"status": 200, "data": record}), 200
+            return jsonify({"message": "Record does not exist"})
 
     def delete_red_flag(self, record_id):
         """deletes a red flag record"""
@@ -120,4 +121,13 @@ class Records:
                                 "message": "Updated red-flag record's comment"}
                                                         ]}), 200
 
-
+    def edit_redflag(self, record_id, location, comment, images, videos):
+        """Edit a red-flag"""
+        for record in self.records:
+            if record['id'] == record_id:
+                record['location'] = location
+                record['comment'] = comment
+                record['images'] = images
+                record['videos'] = videos
+                    
+                return jsonify({"status": 200, "message": "Updated red-flag"}), 200
