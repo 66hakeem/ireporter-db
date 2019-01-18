@@ -119,3 +119,5 @@ class Records:
                 return jsonify({"status": 200, "data": [{"id": record_id,
                                 "message": "Updated red-flag record's comment"}
                                                         ]}), 200
+
+
