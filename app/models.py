@@ -14,27 +14,23 @@ class Users:
         isAdmin = False
         today = str(date.today())
 
-        if not firstname.isalpha() or len(firstname) < 2
-        or firstname.strip() == "":
-            return jsonify({"message": "wrong first name format"})
+        if not firstname.isalpha() or len(firstname) < 2 or " " in firstname:
+            return jsonify({"message": "wrong first name format"}), 400
 
-        if not lastname.isalpha() or len(lastname) < 2
-        or lastname.strip() == "":
-            return jsonify({"message": "wrong last name format"})
+        if not lastname.isalpha() or len(lastname) < 2 or " " in lastname:
+            return jsonify({"message": "wrong last name format"}), 400
 
-        if not phonenumber.isdigit() or len(phonenumber) < 7
-        or phonenumber.strip == "":
-            return jsonify({"message": "wrong phone number format"})
+        if not phonenumber.isdigit() or len(phonenumber) < 7 or " " in phonenumber:
+            return jsonify({"message": "wrong phone number format"}), 400
 
-        if not othername.isalpha() or len(othername) < 2
-        or othername.strip() == "":
-            return jsonify({"message": "wrong other name format"})
+        if not othername.isalpha() or len(othername) < 2 or " " in othername:
+            return jsonify({"message": "wrong other name format"}), 400
 
-        if email.strip() == "":
-            return jsonify({"message": "Email must not have spaces"})
+        if " " in email:
+            return jsonify({"message": "Email must not have spaces"}), 400
 
-        if len(username) < 5 or username.strip() == "":
-            return jsonify({"message": "wrong user name format"})
+        if len(username) < 5 or " " in username:
+            return jsonify({"message": "wrong user name format"}), 400
 
         for user in self.users:
             if user['username'] == username:
