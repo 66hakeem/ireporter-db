@@ -61,4 +61,4 @@ python run.py
 
 Application is deployed using Heroku.
 
-checkout it on [View App](https://ireportercapt-api-heroku.herokuapp.com/api/v1/red_flags/)
+https://ireportercapt-api-heroku.herokuapp.com/api/v1/red_flags/)
