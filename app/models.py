@@ -3,38 +3,43 @@ from datetime import date
 
 
 class Users:
-    
+
     def __init__(self):
         self.users = []
-    
-    def register_user(self, firstname, lastname, email, phonenumber, username, othername):
+
+    def register_user(self, firstname, lastname, email, phonenumber, username,
+                      othername):
         """ functions adds a user to the users dictionary """
         user_id = len(self.users) + 1
         isAdmin = False
-        today = str(date.today()) 
+        today = str(date.today())
 
-        if not firstname.isalpha() or len(firstname) < 2 or firstname.strip() == "":
-            return jsonify({"message":"wrong first name format"})
+        if not firstname.isalpha() or len(firstname) < 2
+        or firstname.strip() == "":
+            return jsonify({"message": "wrong first name format"})
 
-        if not lastname.isalpha() or len(lastname) < 2 or lastname.strip() == "":
-            return jsonify({"message":"wrong last name format"})
-        
-        if not phonenumber.isdigit() or len(phonenumber) < 7 or phonenumber.strip == "":
-            return jsonify({"message":"wrong phone number format"})
-        
-        if not othername.isalpha() or len(othername) < 2 or othername.strip() == "":
-            return jsonify({"message":"wrong other name format"})
-        
+        if not lastname.isalpha() or len(lastname) < 2
+        or lastname.strip() == "":
+            return jsonify({"message": "wrong last name format"})
+
+        if not phonenumber.isdigit() or len(phonenumber) < 7
+        or phonenumber.strip == "":
+            return jsonify({"message": "wrong phone number format"})
+
+        if not othername.isalpha() or len(othername) < 2
+        or othername.strip() == "":
+            return jsonify({"message": "wrong other name format"})
+
         if email.strip() == "":
-            return jsonify({"message":"Email must not have spaces"})
-        
+            return jsonify({"message": "Email must not have spaces"})
+
         if len(username) < 5 or username.strip() == "":
-            return jsonify({"message":"wrong user name format"})
-        
+            return jsonify({"message": "wrong user name format"})
+
         for user in self.users:
             if user['username'] == username:
-                return jsonify({"message": "Username already exists"})        
-        
+                return jsonify({"message": "Username already exists"})
+
         user = {
             "firstname": firstname,
             "user_id": user_id,
@@ -47,17 +52,20 @@ class Users:
             "registered": today
         }
         self.users.append(user)
-        return jsonify({"status": 201, "data": [{"id":user_id, "message":"Created user."}]}), 201
-    
+        return jsonify({"status": 201, "data": [{"id": user_id, "message":
+                        "Created user."}]}), 201
+
     def get_users(self):
         """ gets a list of users"""
         return jsonify({"status": 200, "data": self.users}), 200
+
 
 class Records:
     def __init__(self):
         self.records = []
 
-    def create_red_flag_record(self, createdBy, location, comment, images, videos):
+    def create_red_flag_record(self, createdBy, location, comment, images,
+                               videos):
         record_id = len(self.records) + 1
         status = "Draft"
         created_on = str(date.today())
@@ -71,41 +79,47 @@ class Records:
             "location": location,
             "status": status,
             "comment": comment,
-            "images": images, 
+            "images": images,
             "videos": videos
         }
 
         self.records.append(record)
-        return jsonify({"status": 201, "data": [{"id":record_id, "message":"Created red-flag record"}]}),201
-    
+        return jsonify({"status": 201, "data": [{"id": record_id, "message":
+                        "Created red-flag record"}]}), 201
+
     def get_red_flags(self):
         """ gets a list of users"""
         return jsonify({"status": 200, "data": self.records}), 200
-    
+
     def get_red_flag(self, record_id):
         """get a specific red flag"""
         for record in self.records:
             if record['id'] == record_id:
-                return jsonify({"status":200, "data": record}), 200
-    
+                return jsonify({"status": 200, "data": record}), 200
+
     def delete_red_flag(self, record_id):
         """deletes a red flag record"""
         for record in self.records:
             if record['id'] == record_id:
                 self.records.remove(record)
-                return jsonify({"status":200, "data": [{"id":record_id, "message":"red-flag record has been deleted"}]}), 200
-    
+                return jsonify({"status": 200, "data": [{"id": record_id,
+                                "message": "red-flag record has been deleted"}]
+                                }), 200
+
     def edit_redflag_location(self, record_id, location):
         """Edit a red-flag's location"""
         for record in self.records:
             if record['id'] == record_id:
                 record['location'] = location
-                return jsonify({"status": 200, "data": [{"id":record_id, "message":"Updated red-flag record's location"}]}), 200
-    
+                return jsonify({"status": 200, "data": [{"id": record_id,
+                                "message": "Updated red-flag record's location"
+                                                         }]}), 200
+
     def edit_redflag_comment(self, record_id, comment):
         """Edit a red-flag's location"""
         for record in self.records:
             if record['id'] == record_id:
                 record['comment'] = comment
-                return jsonify({"status": 200, "data": [{"id":record_id, "message":"Updated red-flag record's comment"}]}), 200
-    
+                return jsonify({"status": 200, "data": [{"id": record_id,
+                                "message": "Updated red-flag record's comment"}
+                                                        ]}), 200
