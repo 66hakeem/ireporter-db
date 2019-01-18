@@ -13,6 +13,28 @@ class Users:
         isAdmin = False
         today = str(date.today()) 
 
+        if not firstname.isalpha() or len(firstname) < 2 or firstname.strip() == "":
+            return jsonify({"message":"wrong first name format"})
+
+        if not lastname.isalpha() or len(lastname) < 2 or lastname.strip() == "":
+            return jsonify({"message":"wrong last name format"})
+        
+        if not phonenumber.isdigit() or len(phonenumber) < 7 or phonenumber.strip == "":
+            return jsonify({"message":"wrong phone number format"})
+        
+        if not othername.isalpha() or len(othername) < 2 or othername.strip() == "":
+            return jsonify({"message":"wrong other name format"})
+        
+        if email.strip() == "":
+            return jsonify({"message":"Email must not have spaces"})
+        
+        if len(username) < 5 or username.strip() == "":
+            return jsonify({"message":"wrong user name format"})
+        
+        for user in self.users:
+            if user['username'] == username:
+                return jsonify({"message": "Username already exists"})        
+        
         user = {
             "firstname": firstname,
             "user_id": user_id,
@@ -49,7 +71,7 @@ class Records:
             "location": location,
             "status": status,
             "comment": comment,
-            "images": images,
+            "images": images, 
             "videos": videos
         }
 
@@ -86,3 +108,4 @@ class Records:
             if record['id'] == record_id:
                 record['comment'] = comment
                 return jsonify({"status": 200, "data": [{"id":record_id, "message":"Updated red-flag record's comment"}]}), 200
+    
