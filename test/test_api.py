@@ -56,11 +56,14 @@ class ApiTest(TestCase):
                              data=json.dumps(dict(
                               comment="Report Case of Missing Funds")))
         self.assertEqual(res.status_code, 200)
-"""
+
     def test_edit_red_flag_(self):
-        res = self.app.put('api/v1/red_flags/1/',
-                        content_type='application/json',
-                        data=json.dumps(dict(
-                            comment="Report Corruption")))
+        res = self.app.put('api/v1/red_flags/1',
+                           content_type='application/json',
+                           data=json.dumps(dict(
+                            comment="Report Corruption",
+                            location="234.33, 3332.1",
+                            images="car.jpg",
+                            videos="videos.mp4")))
         self.assertEqual(res.status_code, 200)
-"""
+
