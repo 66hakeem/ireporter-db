@@ -20,7 +20,8 @@ class Users:
         if not lastname.isalpha() or len(lastname) < 2 or " " in lastname:
             return jsonify({"message": "wrong last name format"}), 400
 
-        if not phonenumber.isdigit() or len(phonenumber) < 7 or " " in phonenumber:
+        if not phonenumber.isdigit() or len(phonenumber) < 7 or " " in \
+                phonenumber:
             return jsonify({"message": "wrong phone number format"}), 400
 
         if not othername.isalpha() or len(othername) < 2 or " " in othername:
@@ -129,5 +130,6 @@ class Records:
                 record['comment'] = comment
                 record['images'] = images
                 record['videos'] = videos
-                    
-                return jsonify({"status": 200, "message": "Updated red-flag"}), 200
+
+                return jsonify({"status": 200, "message":
+                                "Updated red-flag"}), 200
