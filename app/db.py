@@ -21,20 +21,18 @@ class Database:
             email VARCHAR(50) NOT NULL,
             phonenumber int NOT NULL,
             password TEXT NOT NULL,
-            registered TEXT NOT NULL,
-            isAdmin BOOL NOT NULL
-            )"""
+            registered DATE NOT NULL,
+            isAdmin BOOL NOT NULL )"""
         incidents_table = """create table if not exists incidents(
             id serial NOT NULL,
-            createdOn DATE, NOT NULL,
+            createdOn DATE NOT NULL,
             createdBy INTEGER REFERENCES users(user_id),
             type VARCHAR(50) NOT NULL,
             location VARCHAR(50) NOT NULL,
             status VARCHAR (50) NOT NULL,
             comment VARCHAR (50) NOT NULL,
             images VARCHAR (50) NOT NULL,
-            videos VARCHAR (50) NOT NULL,
-            )"""
+            videos VARCHAR (50) NOT NULL )"""
 
         Database.cur.execute(user_table)
         Database.cur.execute(incidents_table)
