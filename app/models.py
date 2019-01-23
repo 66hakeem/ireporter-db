@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 db_content = Database()
 
 
-class Users:
+class User:
 
     def register_user(self, firstname, lastname, email, phonenumber, username,
                       othername, password):
@@ -26,7 +26,7 @@ class Users:
         return jsonify({'users': data})
 
 
-class Incidents:
+class Incident:
 
     def create_red_flag_record(self, createdBy, location, comment, images, videos):
         status = "Draft"
@@ -38,19 +38,30 @@ class Incidents:
             db_content.cur.execute(sql, (createdOn, createdBy, incident_type, location, status, comment, images, videos))
         except psycopg2.Error as err:
             return jsonify({'error': str(err)})
-        return jsonify({'message': 'succussfully registered'}), 201
+        return jsonify({"status": 201, "data": [{"message": "Created red-flag record"}]}), 201
 
     def get_all_redflags(self):
         db_content.dict_cursor.execute("SELECT * FROM incidents")
         data = db_content.dict_cursor.fetchall()
-        return jsonify({'red-flags': data})
+        return jsonify({'red-flags': data}), 200
 
     def update_redflag_comment(self, id, comment):
         sql = "UPDATE incidents SET comment='"+comment+"' WHERE id='{}'".format(id)
         db_content.cur.execute(sql)
-        return jsonify({'message': 'Comment successfully updated'}), 200
+        return jsonify({"status": 200, "data": [{"message": "Updated red-flag record's comment"}]}), 200
     
     def update_redflag_location(self, id, location):
-        sql = "UPDATE incidents SET comment='"+location+"' WHERE id='{}'".format(id)
+        sql = "UPDATE incidents SET location='"+location+"' WHERE id='{}'".format(id)
         db_content.cur.execute(sql)
-        return jsonify({'message': 'Location successfully updated'}), 200
+        return jsonify({"status": 200, "data": [{"message": "Updated red-flag record's location"}]}), 200
+    
+    def get_red_flag(self, id):
+        db_content.dict_cursor.execute("SELECT * from incidents WHERE id='{}'".format(id))
+        data = db_content.dict_cursor.fetchall()
+        return jsonify({"status": 200, "data": data}), 200
+    
+    def delete_redflag_record(self, id):
+        sql = "DELETE from incidents WHERE id='{}'".format(id)
+        db_content.cur.execute(sql)
+        return jsonify({"status": 200, "message": "Redflag deleted"})
+        
