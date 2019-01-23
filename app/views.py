@@ -1,5 +1,5 @@
 from flask import jsonify, request, make_response
-from app.controllers import Users, Incidents
+from app.models import Users, Incidents
 from instance import myapp
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.db import Database
