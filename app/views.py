@@ -3,7 +3,7 @@ from app.models import User, Incident
 from instance import myapp
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.db import Database
-from flask_jwt_extended import (JWTManager, create_access_token, get_jwt_identity, jwt_required)
+from flask_jwt_extended import (JWTManager, create_access_token, jwt_required)
 import datetime
 from functools import wraps
 
@@ -38,13 +38,15 @@ def register_user():
         firstname = request.json['firstname']
         lastname = request.json['lastname']
         email = request.json['email']
-        password = generate_password_hash(request.json['password'], method='sha256')
+        password = generate_password_hash(request.json['password'],
+                                          method='sha256')
         phonenumber = request.json['phonenumber']
         username = request.json['username']
         othername = request.json['othername']
     except KeyError:
-        return jsonify({'message': 'some fields are missing'}), 400   
-    return user1.register_user(firstname, lastname, email, phonenumber, username, othername, password)
+        return jsonify({'message': 'some fields are missing'}), 400
+    return user1.register_user(firstname, lastname, email, phonenumber,
+                               username, othername, password)
 
 
 @myapp.route('/api/v1/users', methods=['GET'])
@@ -64,7 +66,8 @@ def create_red_flag():
         videos = request.json['videos']
     except KeyError:
         return jsonify({'message': 'some fields are missing'}), 400
-    return record.create_red_flag_record(createdBy, location, comment, images, videos)
+    return record.create_red_flag_record(createdBy, location, comment,
+                                         images, videos)
 
 
 @myapp.route('/api/v1/red_flags', methods=['GET'])
