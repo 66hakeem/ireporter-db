@@ -83,3 +83,13 @@ def update_comment(red_flag_id):
         return jsonify({'message': 'Comment field is missing'}), 400
 
     return record.update_redflag_comment(red_flag_id, comment)
+
+
+@myapp.route('/api/v1/red_flags/<int:red_flag_id>/location', methods=['PATCH'])
+def update_location(red_flag_id):
+    try:
+        location = request.json['location']
+    except KeyError:
+        return jsonify({'message': 'Location field is missing'}), 400
+
+    return record.update_redflag_location(red_flag_id, location)

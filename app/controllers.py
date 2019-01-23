@@ -51,6 +51,6 @@ class Incidents:
         return jsonify({'message': 'Comment successfully updated'}), 200
     
     def update_redflag_location(self, id, location):
-        sql = "UPDATE incidents SET comment='"+location+"' WHERE id='{}'".format(id)
+        sql = "UPDATE incidents SET location='"+location+"' WHERE id='{}'".format(id)
         db_content.cur.execute(sql)
         return jsonify({'message': 'Location successfully updated'}), 200
