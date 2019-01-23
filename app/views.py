@@ -12,6 +12,7 @@ user1 = Users()
 db_cont = Database()
 jwt = JWTManager(myapp)
 
+
 @myapp.route('/login', methods=['GET'])
 def login():
     auth = request.authorization
@@ -28,8 +29,6 @@ def login():
         token = create_access_token(identity=auth.username)
         return jsonify({'token': token})
     return make_response('Could not verify')
-
-
 
 
 @myapp.route('/api/v1/users', methods=['POST'])
@@ -93,3 +92,14 @@ def update_location(red_flag_id):
         return jsonify({'message': 'Location field is missing'}), 400
 
     return record.update_redflag_location(red_flag_id, location)
+
+
+@myapp.route('/api/v1/red_flags/<int:red_flag_id>', methods=['GET'])
+def get_specific_redflag(red_flag_id):
+    return record.get_red_flag(red_flag_id)
+
+"""
+@myapp.route('/api/v1/red_flags/<int:red_flag_id>', methods=['DELETE'])
+def delete_redflag_record(red_flag_id):
+    return record.delete_red_flag(red_flag_id)
+"""
