@@ -1,5 +1,5 @@
 from flask import jsonify, request, make_response
-from app.models import Users, Incidents
+from app.models import User, Incident
 from instance import myapp
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.db import Database
@@ -7,8 +7,8 @@ from flask_jwt_extended import (JWTManager, create_access_token, get_jwt_identit
 import datetime
 from functools import wraps
 
-record = Incidents()
-user1 = Users()
+record = Incident()
+user1 = User()
 db_cont = Database()
 jwt = JWTManager(myapp)
 
