@@ -98,8 +98,7 @@ def update_location(red_flag_id):
 def get_specific_redflag(red_flag_id):
     return record.get_red_flag(red_flag_id)
 
-"""
+
 @myapp.route('/api/v1/red_flags/<int:red_flag_id>', methods=['DELETE'])
 def delete_redflag_record(red_flag_id):
-    return record.delete_red_flag(red_flag_id)
-"""
+    return record.delete_redflag(red_flag_id)

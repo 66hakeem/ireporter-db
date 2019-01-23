@@ -60,7 +60,7 @@ class Incident:
         data = db_content.dict_cursor.fetchall()
         return jsonify({"status": 200, "data": data}), 200
     
-    def delete_redflag_record(self, id):
+    def delete_redflag(self, id):
         sql = "DELETE from incidents WHERE id='{}'".format(id)
         db_content.cur.execute(sql)
         return jsonify({"status": 200, "message": "Redflag deleted"})
