@@ -14,7 +14,7 @@ class Database:
     def create_tables(self):
         user_table = """create table if not exists users(
             user_id serial PRIMARY KEY NOT NULL,
-            firstname VARCHAR(50) NOT NULL, 
+            firstname VARCHAR(50) NOT NULL,
             lastname VARCHAR(50) NOT NULL,
             othername VARCHAR(50) NOT NULL,
             username VARCHAR(50) NOT NULL,
@@ -43,4 +43,4 @@ class Database:
         Database.cur.execute(drop_tables)
 
 create = Database()
-create.create_tables()  
+create.create_tables()
