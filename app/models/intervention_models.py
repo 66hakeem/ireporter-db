@@ -32,7 +32,7 @@ class Intervention:
         db_content.dict_cursor.execute("SELECT * FROM incidents WHERE\
          incident_type='intervention'")
         data = db_content.dict_cursor.fetchall()
-        return jsonify({'red-flags': data}), 200
+        return jsonify({'interventions': data}), 200
 
     def update_intervention_comment(self, id, comment):
         sql = "UPDATE incidents SET comment='"+comment+"'\
@@ -48,6 +48,13 @@ class Intervention:
         db_content.cur.execute(sql)
         return jsonify({"status": 200, "data": [{"message": "Updated\
          intervention record's location"}]}), 200
+
+    def update_intervention_status(self, id, status):
+        sql = "UPDATE incidents SET status='"+status+"' WHERE\
+         incident_type='intervention' and id='{}'".format(id)
+        db_content.cur.execute(sql)
+        return jsonify({"status": 200, "data": [{"message": "Updated\
+         intervention record's status"}]}), 200
 
     def get_intervention(self, id):
         db_content.dict_cursor.execute("SELECT * from incidents WHERE\
