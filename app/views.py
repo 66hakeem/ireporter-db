@@ -1,9 +1,12 @@
 from flask import jsonify, request, make_response
-from app.models import User, Incident
+from app.models.user_models import User
+from app.models.redflag_models import Redflag
+from app.models.intervention_models import Intervention
 from instance import myapp
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.db import Database
-from flask_jwt_extended import (JWTManager, create_access_token, jwt_required)
+from flask_jwt_extended import (JWTManager, create_access_token,
+                                get_jwt_identity, jwt_required)
 import datetime
 from functools import wraps
 
@@ -64,25 +67,24 @@ def create_red_flag():
         videos = request.json['videos']
     except KeyError:
         return jsonify({'message': 'some fields are missing'}), 400
-    return Incident().create_red_flag_record(createdBy, location, comment,
-                                             images, videos)
+    return Redflag().create_red_flag_record(createdBy, location, comment,
+                                            images, videos)
 
 
 @myapp.route('/api/v1/red_flags', methods=['GET'])
-@jwt_required
 def get_red_flags():
 
-    return Incident().get_all_redflags()
+    return Redflag().get_all_redflags()
 
 
 @myapp.route('/api/v1/red_flags/<int:red_flag_id>/comment', methods=['PATCH'])
-def update_comment(red_flag_id):
+def update_red_flag_comment(red_flag_id):
     try:
         comment = request.json['comment']
     except KeyError:
         return jsonify({'message': 'Comment field is missing'}), 400
 
-    return Incident().update_redflag_comment(red_flag_id, comment)
+    return Redflag().update_redflag_comment(red_flag_id, comment)
 
 
 @myapp.route('/api/v1/red_flags/<int:red_flag_id>/location', methods=['PATCH'])
@@ -92,14 +94,31 @@ def update_location(red_flag_id):
     except KeyError:
         return jsonify({'message': 'Location field is missing'}), 400
 
-    return Incident().update_redflag_location(red_flag_id, location)
+    return Redflag().update_redflag_location(red_flag_id, location)
 
 
 @myapp.route('/api/v1/red_flags/<int:red_flag_id>', methods=['GET'])
 def get_specific_redflag(red_flag_id):
-    return Incident().get_red_flag(red_flag_id)
+    return Redflag.get_red_flag(red_flag_id)
 
 
 @myapp.route('/api/v1/red_flags/<int:red_flag_id>', methods=['DELETE'])
 def delete_redflag_record(red_flag_id):
-    return Incident().delete_redflag(red_flag_id)
+    return Redflag().delete_redflag(red_flag_id)
+
+
+@myapp.route('/api/v1/interventions', methods=['GET'])
+def get_interventions():
+
+    return Intervention().get_all_interventions()
+
+
+@myapp.route('/api/v1/intervention/<int:intervention_id>/comment',
+             methods=['PATCH'])
+def update_intervention_comment(intervention_id):
+    try:
+        comment = request.json['comment']
+    except KeyError:
+        return jsonify({'message': 'Comment field is missing'}), 400
+
+    return Intervention().update_intervention_comment(intervention_id, comment)
