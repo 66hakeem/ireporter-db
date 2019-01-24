@@ -13,9 +13,9 @@ class BaseTest(TestCase):
             'firstname': 'hakeem',
             'lastname': 'matovu',
             'email': '66hakeem@gmail.com',
-            'password': 'product256',
+            'password': '1234567',
             'phonenumber': '0704527580',
-            'username': '66hakeem',
+            'username': 'hakeemcapt',
             'othername': 'salim'
         }
         self.redflag_incident = {
@@ -25,21 +25,21 @@ class BaseTest(TestCase):
             'videos': 'videos.mp4'
         }
         self.login_data = {
-            'username': '66hakeem',
-            'password': 'product256'
+            'username': 'hakeemcapt',
+            'password': '1234567'
         }
 
-        def signup_user(self, user):
-            user_res = self.app.post('/api/v1/users', content_type='application/json', data=json.dumps(user))
-            return user_res
-        
-        def login_token(self, userinfo):
-            log_res = self.app.post('api/v1/auth/login', content_type='application/json', data=json.dumps(login_data))
-            res_data = json.loads(log_res.data.decode())
-            token = res_data['access-token']
-            return token
-        
-        def login(self, userinfo):
-            res = self.app.post('/api/v1/auth/login', content_type='application/json', data=json.dumps(userdata))
-            return res
-            
+    def signup_user(self, user):
+        user_res = self.app.post('/api/v1/users', content_type='application/json', data=json.dumps(user))
+        return user_res
+
+    def login_token(self, userinfo):
+        log_res = self.app.post('api/v1/auth/login', content_type='application/json', data=json.dumps(userinfo))
+        res_data = json.loads(log_res.data.decode())
+        token = res_data['token']
+        return token
+
+    def login(self, userinfo):
+        res = self.app.post('/api/v1/auth/login', content_type='application/json', data=json.dumps(userinfo))
+        return res
+
