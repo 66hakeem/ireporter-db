@@ -1,13 +1,20 @@
-from flask import json
-from unittest import TestCase
-from app import views
-from instance import myapp
+from test.base_test import BaseTest
 
 
 class ApiTest(TestCase):
 
-    def setUp(self):
-        self.app = myapp.test_client()
+    def test_create_redflag
+        user = {
+            "firstname": "Engineer",
+            "lastname": "James",
+            "email": "engjames@gmail.com",
+            "password": "123456",
+            "phonenumber": "0781508582",
+            "username": "engineer66",
+            "othername": "hardguy"
+        }
+        result = app.post('/api/v1/users', headers={'Authorization': 'Bearer '+ self.login_token(self.login_data)}, json=dict(self.user))
+        self.assertEqual(result.status_code, 201)
 
     def test_registration(self):
         res = self.app.post('/api/v1/users', content_type='application/json',
@@ -23,7 +30,7 @@ class ApiTest(TestCase):
     def test_get_all_users(self):
         res = self.app.get('/api/v1/users')
         self.assertEqual(res.status_code, 200)
-
+    """
     def test_create_redflag(self):
         res = self.app.post('/api/v1/red_flags',
                             content_type='application/json',
@@ -35,7 +42,7 @@ class ApiTest(TestCase):
                                                  )))
 
         self.assertEqual(res.status_code, 201)
-
+    """
     def test_get_all_redflag_records(self):
         res = self.app.get('/api/v1/red_flags')
         self.assertEqual(res.status_code, 200)
