@@ -14,10 +14,9 @@ from functools import wraps
 db_cont = Database()
 jwt = JWTManager(myapp)
 
-
+"""
 @myapp.route('/api/v1/auth/login', methods=['GET'])
 def login():
-    """Login to your account"""
     auth = request.authorization
 
     if not auth or not auth.username or not auth.password:
@@ -33,7 +32,7 @@ def login():
         token = create_access_token(identity=auth.username)
         return jsonify({'token': token})
     return make_response('Could not verify')
-
+"""
 """
 def admin(f):
     @wraps(f)
@@ -49,6 +48,32 @@ def admin(f):
             return f(*args, **kwargs)
     return wrapper
 """
+
+
+@myapp.route('/api/v1/auth/login', methods=['POST'])
+def login():
+    """Login to your account"""
+    if not request.is_json:
+        return jsonify({"msg": "Missing JSON in request"}), 400
+
+    username = request.json['username']
+    password = request.json['password']
+
+    if not username:
+        return jsonify({"msg": "Missing username parameter"}), 400
+    if not password:
+        return jsonify({"msg": "Missing password parameter"}), 400
+    
+    sql = "SELECT username, password, user_id, isAdmin from users WHERE\
+             username = %s"
+    db_cont.dict_cursor.execute(sql, (username,))
+    user = db_cont.dict_cursor.fetchone()
+    if not user:
+        return make_response('User not found')
+    if check_password_hash((user['password']), password):
+        access_token = create_access_token(identity=username)
+        return jsonify({'token': access_token})
+    return make_response('Wrong Password')
 
 
 @myapp.route('/api/v1/users', methods=['POST'])
@@ -77,7 +102,6 @@ def get_users():
 
 
 @myapp.route('/api/v1/red_flags', methods=['POST'])
-@jwt_required
 def create_red_flag():
     """Create a red-flag"""
     try:
@@ -117,17 +141,14 @@ def update_location(red_flag_id):
         location = request.json['location']
     except KeyError:
         return jsonify({'message': 'Location field is missing'}), 400
-
-    update = Redflag().update_redflag_location(red_flag_id, location)
     
-    return jsonify({"status": 200, "data": [{"message": "Updated red-flag\
-                         record's location"}]}), 200
+    return Redflag().update_redflag_location(red_flag_id, location)
 
 
 @myapp.route('/api/v1/red_flags/<int:red_flag_id>', methods=['GET'])
 def get_specific_redflag(red_flag_id):
     """Get a specific red-flag"""
-    return Redflag.get_red_flag(red_flag_id)
+    return Redflag().get_red_flag(red_flag_id)
 
 
 @myapp.route('/api/v1/red_flags/<int:red_flag_id>', methods=['DELETE'])
