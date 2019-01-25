@@ -36,7 +36,7 @@ class Intervention:
 
     def update_intervention_comment(self, id, comment):
         sql = "UPDATE incidents SET comment='"+comment+"'\
-         WHERE incident_type='intervention' and id='{}'\
+         WHERE incident_type='intervention' and incident_id='{}'\
                ".format(id)
         db_content.cur.execute(sql)
         return jsonify({"status": 200, "data": [{"message": "Updated intervention\
@@ -44,26 +44,26 @@ class Intervention:
 
     def update_intervention_location(self, id, location):
         sql = "UPDATE incidents SET location='"+location+"' WHERE\
-         incident_type='intervention' and id='{}'".format(id)
+         incident_type='intervention' and incident_id='{}'".format(id)
         db_content.cur.execute(sql)
         return jsonify({"status": 200, "data": [{"message": "Updated\
          intervention record's location"}]}), 200
 
     def update_intervention_status(self, id, status):
         sql = "UPDATE incidents SET status='"+status+"' WHERE\
-         incident_type='intervention' and id='{}'".format(id)
+         incident_type='intervention' and incident_id='{}'".format(id)
         db_content.cur.execute(sql)
         return jsonify({"status": 200, "data": [{"message": "Updated\
          intervention record's status"}]}), 200
 
     def get_intervention(self, id):
         db_content.dict_cursor.execute("SELECT * from incidents WHERE\
-         incident_type='intervention' and id='{}'".format(id))
+        incident_type='intervention' and incident_id='{}'".format(id))
         data = db_content.dict_cursor.fetchall()
         return jsonify({"status": 200, "data": data}), 200
 
     def delete_intervention(self, id):
         sql = "DELETE from incidents WHERE incident_type='intervention'\
-         and id='{}'".format(id)
+         and incident_id='{}'".format(id)
         db_content.cur.execute(sql)
         return jsonify({"status": 200, "message": "Intervention deleted"})

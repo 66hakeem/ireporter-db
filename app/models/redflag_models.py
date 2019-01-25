@@ -39,14 +39,21 @@ class Redflag:
                ".format(id)
         db_content.cur.execute(sql)
         return jsonify({"status": 200, "data": [{"message": "Updated red-flag\
-                         record's comment"}]}), 200
+        record's comment"}]}), 200
 
     def update_redflag_location(self, id, location):
         sql = "UPDATE incidents SET location='"+location+"' WHERE incident_type='red-flag' and incident_id='{}'\
                 ".format(id)
         db_content.cur.execute(sql)
         return jsonify({"status": 200, "data": [{"message": "Updated red-flag\
-                         record's location"}]}), 200
+        record's location"}]}), 200
+    
+    def update_redflag_status(self, id, status):
+        sql = "UPDATE incidents SET status='"+status+"' WHERE incident_type='red-flag' and incident_id='{}'\
+                ".format(id)
+        db_content.cur.execute(sql)
+        return jsonify({"status": 200, "data": [{"message": "Updated red-flag\
+        record's status"}]}), 200
 
     def get_red_flag(self, id):
         db_content.dict_cursor.execute("SELECT * from incidents WHERE incident_type='red-flag' and incident_id='{}'\

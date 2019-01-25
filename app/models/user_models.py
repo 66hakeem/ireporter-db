@@ -62,4 +62,3 @@ class User:
         for user in user_info:
             if user[0] == username:
                 return True
-        return False
