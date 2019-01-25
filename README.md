@@ -61,4 +61,4 @@ python run.py
 
 Application is deployed using Heroku.
 
-https://ireportercapt-api-heroku.herokuapp.com/api/v1/red_flags/)
+https://irep33.herokuapp.com/v1/api/users
