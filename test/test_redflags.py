@@ -4,6 +4,7 @@ from test.base_test import BaseTest
 
 class Test_redflags(BaseTest):
 
+    """
     def test_get_all_redflag_records(self):
         res = self.app.get('/api/v1/red_flags')
         self.assertEqual(res.status_code, 200)
@@ -31,3 +32,5 @@ class Test_redflags(BaseTest):
                              data=json.dumps(dict(
                               status="Resolved")))
         self.assertEqual(res.status_code, 200)
+
+    """
