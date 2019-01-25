@@ -30,16 +30,19 @@ class BaseTest(TestCase):
         }
 
     def signup_user(self, user):
-        user_res = self.app.post('/api/v1/users', content_type='application/json', data=json.dumps(user))
+        user_res = self.app.post('/api/v1/users', content_type='applicat\
+                                 ion/json', data=json.dumps(user))
         return user_res
 
     def login_token(self, userinfo):
-        log_res = self.app.post('api/v1/auth/login', content_type='application/json', data=json.dumps(userinfo))
+        log_res = self.app.post('api/v1/auth/login', content_type='\
+                                ation/json', data=json.dumps(userinfo))
         res_data = json.loads(log_res.data.decode())
         token = res_data['token']
         return token
 
     def login(self, userinfo):
-        res = self.app.post('/api/v1/auth/login', content_type='application/json', data=json.dumps(userinfo))
+        res = self.app.post('/api/v1/auth/login', content_type='applica\
+                            tion/json', data=json.dumps(userinfo))
         return res
 
