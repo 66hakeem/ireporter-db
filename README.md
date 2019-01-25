@@ -54,6 +54,13 @@ python run.py
 |PATCH| /api/v1/red-flags/<int:red_flag_id>/location |Update location of a red flag incident|
 |PATCH| /api/v1/red-flags/<int:red_flag_id>/comment |Update comment of a red flag incident|
 |PUT| /api/v1/red-flags/<int:red_flag_id> |Edit any field location of a red flag incident|
+|POST| /api/v1/interventions |Create an intervention|
+|GET| /api/v1/interventions |Get all interventions|
+|GET| /api/v1/interventions/<int:intervention_id> |Get specific intervention|
+|DELETE| /api/v1/red_flags/<int:intervention_id>|Delete a specific intervention|
+|PATCH| /api/v1/red-flags/<int:intervention_id>/location |Update location of an intervention incident|
+|PATCH| /api/v1/red-flags/<int:intervention_id>/comment |Update comment of an intervention incident|
+|PUT| /api/v1/red-flags/<int:intervention_id> |Edit any field location of an intervention incident|
 
 
 

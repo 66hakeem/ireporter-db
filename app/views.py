@@ -14,25 +14,7 @@ from functools import wraps
 db_cont = Database()
 jwt = JWTManager(myapp)
 
-"""
-@myapp.route('/api/v1/auth/login', methods=['GET'])
-def login():
-    auth = request.authorization
 
-    if not auth or not auth.username or not auth.password:
-        return make_response('Could not verify')
-
-    sql = "SELECT username, password, user_id, isAdmin from users WHERE\
-             username = %s"
-    db_cont.dict_cursor.execute(sql, (auth.username,))
-    user = db_cont.dict_cursor.fetchone()
-    if not user:
-        return make_response('User not found')
-    if check_password_hash((user['password']), auth.password):
-        token = create_access_token(identity=auth.username)
-        return jsonify({'token': token})
-    return make_response('Could not verify')
-"""
 """
 def admin(f):
     @wraps(f)
@@ -95,6 +77,7 @@ def register_user():
 
 
 @myapp.route('/api/v1/users', methods=['GET'])
+@jwt_required
 def get_users():
     """Get all users"""
     return User().get_users()
@@ -117,12 +100,14 @@ def create_red_flag():
 
 
 @myapp.route('/api/v1/red_flags', methods=['GET'])
+@jwt_required
 def get_red_flags():
     """Get all red-flags"""
     return Redflag().get_all_redflags()
 
 
 @myapp.route('/api/v1/red_flags/<int:red_flag_id>/comment', methods=['PATCH'])
+@jwt_required
 def update_red_flag_comment(red_flag_id):
     """Update red-flag comment"""
     try:
@@ -134,6 +119,7 @@ def update_red_flag_comment(red_flag_id):
 
 
 @myapp.route('/api/v1/red_flags/<int:red_flag_id>/location', methods=['PATCH'])
+@jwt_required
 def update_location(red_flag_id):
     """Update red-flag location"""
     try:
@@ -145,6 +131,7 @@ def update_location(red_flag_id):
 
 
 @myapp.route('/api/v1/red_flags/<int:red_flag_id>/status', methods=['PATCH'])
+@jwt_required
 def update_status(red_flag_id):
     """Update red-flag status"""
     try:
@@ -156,12 +143,14 @@ def update_status(red_flag_id):
 
 
 @myapp.route('/api/v1/red_flags/<int:red_flag_id>', methods=['GET'])
+@jwt_required
 def get_specific_redflag(red_flag_id):
     """Get a specific red-flag"""
     return Redflag().get_red_flag(red_flag_id)
 
 
 @myapp.route('/api/v1/red_flags/<int:red_flag_id>', methods=['DELETE'])
+@jwt_required
 def delete_redflag_record(red_flag_id):
     """Delete a specific red-flag"""
     return Redflag().delete_redflag(red_flag_id)
@@ -184,12 +173,14 @@ def create_intervention():
 
 
 @myapp.route('/api/v1/interventions', methods=['GET'])
+@jwt_required
 def get_interventions():
     """Get all intervention records"""
     return Intervention().get_all_interventions()
 
 
 @myapp.route('/api/v1/intervention/<int:intervention_id>', methods=['GET'])
+@jwt_required
 def get_specific_intervention(intervention_id):
     """Get a specific intervention"""
     return Intervention().get_intervention(intervention_id)
@@ -197,6 +188,7 @@ def get_specific_intervention(intervention_id):
 
 @myapp.route('/api/v1/intervention/<int:intervention_id>/comment',
              methods=['PATCH'])
+@jwt_required
 def update_intervention_comment(intervention_id):
     """Update an intervention record's comment"""
     try:
@@ -209,6 +201,7 @@ def update_intervention_comment(intervention_id):
 
 @myapp.route('/api/v1/intervention/<int:intervention_id>/location',
              methods=['PATCH'])
+@jwt_required
 def update_intervention_location(intervention_id):
     """Update intervention location"""
     try:
@@ -221,6 +214,7 @@ def update_intervention_location(intervention_id):
 
 
 @myapp.route('/api/v1/intervention/<int:intervention_id>', methods=['DELETE'])
+@jwt_required
 def delete_intervention_record(intervention_id):
     """Delete a specific red-flag"""
     return Intervention().delete_intervention(intervention_id)
