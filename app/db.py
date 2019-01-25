@@ -22,9 +22,9 @@ class Database:
             phonenumber int NOT NULL,
             password TEXT NOT NULL,
             registered DATE NOT NULL,
-            isAdmin BOOL NOT NULL )"""
+            isAdmin VARCHAR(50) NOT NULL )"""
         incidents_table = """create table if not exists incidents(
-            id serial NOT NULL,
+            incident_id serial NOT NULL,
             createdOn DATE NOT NULL,
             createdBy VARCHAR(50) NOT NULL,
             incident_type VARCHAR(50) NOT NULL,

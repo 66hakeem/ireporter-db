@@ -12,7 +12,7 @@ class User:
 
     def register_user(self, firstname, lastname, email, phonenumber, username,
                       othername, password):
-        isAdmin = False
+        isAdmin = 'False'
         registered = str(date.today())
 
         if not firstname.isalpha() or len(firstname) < 2 or " " in firstname:
@@ -62,4 +62,3 @@ class User:
         for user in user_info:
             if user[0] == username:
                 return True
-        return False
