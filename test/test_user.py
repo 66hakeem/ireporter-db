@@ -6,7 +6,7 @@ class Test_user(BaseTest):
 
     def test_user_signup(self):
         reg = self.signup_user(self.user)
-        self.assertEqual(reg.status_code, 200)
+        self.assertEqual(reg.status_code, 201)
 
     def test_login(self):
         res = self.login(self.login_data)
