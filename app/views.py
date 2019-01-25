@@ -95,13 +95,13 @@ def register_user():
 
 
 @myapp.route('/api/v1/users', methods=['GET'])
-@jwt_required
 def get_users():
     """Get all users"""
     return User().get_users()
 
 
 @myapp.route('/api/v1/red_flags', methods=['POST'])
+@jwt_required
 def create_red_flag():
     """Create a red-flag"""
     try:
@@ -117,7 +117,6 @@ def create_red_flag():
 
 
 @myapp.route('/api/v1/red_flags', methods=['GET'])
-@jwt_required
 def get_red_flags():
     """Get all red-flags"""
     return Redflag().get_all_redflags()
@@ -143,6 +142,17 @@ def update_location(red_flag_id):
         return jsonify({'message': 'Location field is missing'}), 400
     
     return Redflag().update_redflag_location(red_flag_id, location)
+
+
+@myapp.route('/api/v1/red_flags/<int:red_flag_id>/status', methods=['PATCH'])
+def update_status(red_flag_id):
+    """Update red-flag status"""
+    try:
+        status = request.json['status']
+    except KeyError:
+        return jsonify({'message': 'Status field is missing'}), 400
+    
+    return Redflag().update_redflag_status(red_flag_id, status)
 
 
 @myapp.route('/api/v1/red_flags/<int:red_flag_id>', methods=['GET'])
@@ -182,7 +192,7 @@ def get_interventions():
 @myapp.route('/api/v1/intervention/<int:intervention_id>', methods=['GET'])
 def get_specific_intervention(intervention_id):
     """Get a specific intervention"""
-    return Intervention.get_intervention(intervention_id)
+    return Intervention().get_intervention(intervention_id)
 
 
 @myapp.route('/api/v1/intervention/<int:intervention_id>/comment',
@@ -202,9 +212,9 @@ def update_intervention_comment(intervention_id):
 def update_intervention_location(intervention_id):
     """Update intervention location"""
     try:
-        comment = request.json['comment']
+        location = request.json['location']
     except KeyError:
-        return jsonify({'message': 'Comment field is missing'}), 400
+        return jsonify({'message': 'Location field is missing'}), 400
 
     return Intervention().update_intervention_location(intervention_id,
                                                        location)
@@ -221,18 +231,18 @@ def delete_intervention_record(intervention_id):
 @jwt_required
 def update_intervention_status(intervention_id):
     """Update an intervention record's status"""
-    try:
-        user_logged = get_jwt_identity()
-        sql = "SELECT username, isAdmin from users WHERE username = %s"
-        db_cont.dict_cursor.execute(sql, (user_logged,))
-        user = db_cont.dict_cursor.fetchone()
-        if user['isAdmin'] == 'False':
-            return jsonify({'msg': 'Admins only!'}), 403
-        else:
-            status = request.json['status']
-            return Intervention().update_intervention_status(intervention_id,
-                                                             status)       
-    except KeyError:
-        return jsonify({'message': 'Status field is missing'}), 400
+    """
+    user_logged = get_jwt_identity()
+    sql = "SELECT username, isAdmin from users WHERE username = %s"
+    db_cont.dict_cursor.execute(sql, (user_logged,))
+    userr = db_cont.dict_cursor.fetchone()
+    if userr['isAdmin'] == 'False':
+        return jsonify({'msg': 'Admins only!'}), 403
+    else:
+    """
+    status = request.json['status']
+    return Intervention().update_intervention_status(intervention_id,
+                                                     status)       
+    
 
     
