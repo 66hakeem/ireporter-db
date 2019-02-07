@@ -1,0 +1,7 @@
+# Environments
+ivenv/
+.vscode/
+__pycache__/
+.pytest_cache/
+*.pyc
+htmlcov/
